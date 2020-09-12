@@ -5,5 +5,7 @@
 {% block content %}
 <h3>Language name: {{ language.name }}</h3>
 <h3>Short Code: {{ language.abbreviation }}</h3>
-<a href="{% url 'update_pl' language.pk %}">Update</a>
+<a href="{% url 'languages' %}" class="btn btn-info btn-sm">Return to List</a>
+<a href="{% url 'update_pl' language.pk %}" class="btn btn-info btn-sm">Update</a>
+<a href="{% url 'delete_pl' language.pk %}" class="btn btn-danger btn-sm">Delete</a>
 {% endblock content %}
