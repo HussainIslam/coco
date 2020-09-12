@@ -1,0 +1,28 @@
+{% extends '../_base.html' %}
+
+{% block title %}List of Languages{% endblock title %}
+
+{% block content %}
+<h1>List of Languages</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Language Name</th>
+            <th>Short Code</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for language in languages %}
+        <tr>
+            <td>{{ language.name }}</td>
+            <td>{{ language.abbreviation }}</td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td>No programming language added to database yet</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

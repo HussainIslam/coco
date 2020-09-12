@@ -1,0 +1,12 @@
+{% extends '../_base.html' %}
+
+{% block title %}Add Language{% endblock title %}
+
+{% block content %}
+<h2>Add New Programming Language</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Language</button>
+</form>
+{% endblock content %}
