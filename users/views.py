@@ -29,3 +29,9 @@ class ProgrammingLanguageUpdateView(UpdateView):
     context_object_name = 'language'
     success_url = reverse_lazy('languages')
     template_name = 'ProgrammingLanguage/update_pl.html'
+
+class ProgrammingLanguageDeleteView(DeleteView):
+    model = ProgrammingLanguage
+    success_url = reverse_lazy('languages')
+    context_object_name = 'language'
+    template_name = 'ProgrammingLanguage/delete_pl.html'

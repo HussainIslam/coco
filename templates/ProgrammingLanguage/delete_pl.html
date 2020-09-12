@@ -1,0 +1,13 @@
+{% extends '../_base.html' %}
+
+{% block title %}Delete Language{% endblock title %}
+
+{% block content %}
+<h1>Delete Language</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ language.name }} from database?</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href={{ language.get_absolute_url }} class="btn btn-success">Cancel</a>
+</form>
+{% endblock content %}

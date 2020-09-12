@@ -21,6 +21,7 @@
             <td>
                 <a href="{{ language.get_absolute_url }}" class="btn btn-primary">Details</a>
                 <a href="{% url 'update_pl' language.pk %}" class="btn btn-primary">Update</a>
+                <a href="{% url 'delete_pl' language.pk %}" class="btn btn-danger">Delete</a>
             </td>
         </tr>
     {% empty %}
