@@ -117,3 +117,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Custom User model
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Authentication and Authorization
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
