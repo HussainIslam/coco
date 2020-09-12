@@ -5,4 +5,5 @@
 {% block content %}
 <h3>Language name: {{ language.name }}</h3>
 <h3>Short Code: {{ language.abbreviation }}</h3>
+<a href="{% url 'update_pl' language.pk %}">Update</a>
 {% endblock content %}

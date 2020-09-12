@@ -22,3 +22,10 @@ class ProgrammingLanguageDetailView(DetailView):
 class ProgrammingLanguageCreate(CreateView):
     form_class = ProgrammingLanguageForm
     template_name = 'ProgrammingLanguage/create_pl.html'
+
+class ProgrammingLanguageUpdateView(UpdateView):
+    model = ProgrammingLanguage
+    form_class = ProgrammingLanguageForm
+    context_object_name = 'language'
+    success_url = reverse_lazy('languages')
+    template_name = 'ProgrammingLanguage/update_pl.html'

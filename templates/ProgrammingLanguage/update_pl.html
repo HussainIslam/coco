@@ -1,0 +1,12 @@
+{% extends '../_base.html' %}
+
+{% block title %}Update Language{% endblock title %}
+
+{% block content %}
+<h1>Update {{ language.name }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
+{% endblock content %}
