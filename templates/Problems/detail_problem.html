@@ -4,6 +4,6 @@
 
 {% block content %}
 <h1>{{ problem.title }}</h1>
-<h3>Created by: {{ problem.author.username }}</h3>
+<h3>Created by: {{ problem.author.username }} | Language: {{ problem.language }}</h3>
 <p>{{ problem.body }}</p>
 {% endblock content %}
