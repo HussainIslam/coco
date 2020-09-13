@@ -4,6 +4,11 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from .models import Problem
 from .forms import ProblemModelForm
 
+class ProblemListView(ListView):
+    model = Problem
+    context_object_name = 'problems'
+    template_name = 'Problems/list_problems.html'
+
 class ProblemCreateView(CreateView):
     model = Problem
     form_class = ProblemModelForm

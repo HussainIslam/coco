@@ -1,0 +1,16 @@
+{% extends '../_base.html' %}
+
+{% block title %}Problems{% endblock title %}
+
+{% block content %}
+<h1>Problems</h1>
+{% for problem in problems %}
+    <div>
+        <h4>{{ problem.title }}</h4>
+        <p>Created by: {{ problem.author }} | Language: {{ problem.language }} | submitted on: {{ problem.published }}</p>
+        <p>{{ problem.body }}</p>
+    </div>
+{% empty %}
+    <p>There are no problem yet!!</p>
+{% endfor %}
+{% endblock content %}
