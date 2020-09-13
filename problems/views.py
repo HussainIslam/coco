@@ -16,3 +16,8 @@ class ProblemCreateView(CreateView):
 class ProbelmDetailView(DetailView):
     model = Problem
     template_name = 'Problems/detail_problem.html'
+
+class ProblemUpdateView(UpdateView):
+    model = Problem
+    form_class = ProblemModelForm
+    template_name = 'Problems/update_problem.html'
