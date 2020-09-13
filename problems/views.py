@@ -5,3 +5,5 @@ from .models import Problem
 
 class ProblemCreateView(CreateView):
     model = Problem
+    fields = ('title', 'language', 'body',)
+    template_name = 'Problems/create_problem.html'
