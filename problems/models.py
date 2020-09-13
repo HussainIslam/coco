@@ -12,6 +12,7 @@ class Problem(models.Model):
     )
     title = models.CharField(max_length=250)
     body = models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     published = models.DateTimeField(default=timezone.now)
@@ -21,5 +22,6 @@ class Problem(models.Model):
     def __str__(self):
         return self.title
     
-    
+    def get_absolute_url(self):
+        return reverse("detail_problem", kwargs={"pk": self.pk})
     
