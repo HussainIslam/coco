@@ -6,7 +6,7 @@
 <h1>Problems</h1>
 {% for problem in problems %}
     <div>
-        <h4>{{ problem.title }}</h4>
+        <h4><a href={{ problem.get_absolute_url }}>{{ problem.title }}</a></h4>
         <p>Created by: {{ problem.author }} | Language: {{ problem.language }} | submitted on: {{ problem.published }}</p>
         <p>{{ problem.body }}</p>
     </div>
