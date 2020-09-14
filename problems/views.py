@@ -25,7 +25,6 @@ class ProbelmDetailView(DetailView):
     template_name = 'Problems/detail_problem.html'
 
     def get_context_data(self, **kwargs):
-        print(self.kwargs)
         problem_id = self.kwargs.get("pk")
         context = super(ProbelmDetailView, self).get_context_data(**kwargs)
         context["problem"] = get_object_or_404(Problem, id=problem_id)

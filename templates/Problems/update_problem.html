@@ -4,6 +4,7 @@
 
 {% block content %}
 <h1>Update {{ problem.title }}</h1>
+{{ form.media }}
 <form method='post'>
     {% csrf_token %}
     {{ form.as_p }}
