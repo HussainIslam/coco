@@ -10,7 +10,6 @@ class ProblemListView(ListView):
     template_name = 'Problems/list_problems.html'
 
 class ProblemCreateView(CreateView):
-    model = Problem
     form_class = ProblemModelForm
     template_name = 'Problems/create_problem.html'
 
