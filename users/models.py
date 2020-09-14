@@ -11,6 +11,10 @@ class CustomUser(AbstractUser):
         related_name='user_profile'
     )
 
+    def get_absolute_url(self):
+        return reverse("profile", kwargs={"pk": self.pk})
+    
+
 class ProgrammingLanguage(models.Model):
     name = models.CharField(max_length=25, unique=True)
     abbreviation = models.CharField(max_length=5)
