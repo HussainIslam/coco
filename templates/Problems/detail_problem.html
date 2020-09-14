@@ -12,5 +12,8 @@
 </ul>
 <p>{{ problem.description }}</p>
 <pre>{{ problem.code }}</pre>
-<p><a href="{% url 'update_problem' problem.pk %}" class="btn btn-info btn-sm">Update Problem</a></p>
+<p>
+    <a href="{% url 'update_problem' problem.pk %}" class="btn btn-info btn-sm">Update Problem</a>
+    <a href="{% url 'delete_problem' problem.pk %}" class="btn btn-danger btn-sm">Delete Problem</a>
+</p>
 {% endblock content %}

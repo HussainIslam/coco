@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 from taggit.models import Tag
 
@@ -33,3 +34,8 @@ class ProblemUpdateView(UpdateView):
     model = Problem
     form_class = ProblemModelForm
     template_name = 'Problems/update_problem.html'
+
+class ProblemDeleteView(DeleteView):
+    model = Problem
+    success_url = reverse_lazy('list_problems')
+    template_name = 'Problems/delete_problem.html'
