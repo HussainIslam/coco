@@ -7,8 +7,8 @@ from .models import Problem
 class ProblemModelForm(forms.ModelForm):
     class Meta:
         model = Problem
-        fields = ['title', 'language', 'status', 'body',]
+        fields = ['title', 'language', 'status','description', 'code',]
         widgets = {
-            "body": AceWidget(mode="python", theme="twilight"),
+            "code": AceWidget(mode="python", theme="twilight"),
         }
         

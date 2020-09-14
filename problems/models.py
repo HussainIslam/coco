@@ -11,7 +11,8 @@ class Problem(models.Model):
         ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
-    body = models.TextField()
+    description = models.TextField()
+    code = models.TextField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
