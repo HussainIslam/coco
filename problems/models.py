@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.urls import reverse
 
+from taggit.managers import TaggableManager
+
 from users.models import ProgrammingLanguage
 
 class Problem(models.Model):
@@ -19,6 +21,7 @@ class Problem(models.Model):
     published = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='problems')
     language = models.ForeignKey(ProgrammingLanguage, on_delete=models.SET_NULL, related_name='problems', null=True, blank=True)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.title

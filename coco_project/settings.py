@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_ace',
+    'taggit',
     
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',

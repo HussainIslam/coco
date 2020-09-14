@@ -9,6 +9,7 @@ verify_ssl = true
 django = "*"
 pillow = "*"
 django-ace = "*"
+django-taggit = "*"
 
 [requires]
 python_version = "3.6"
