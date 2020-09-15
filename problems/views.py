@@ -7,6 +7,8 @@ from taggit.models import Tag
 
 from .models import Problem
 from .forms import ProblemModelForm
+from comments.models import Comment
+from comments.forms import CommentForm
 
 class ProblemListView(ListView):
     model = Problem
@@ -29,6 +31,14 @@ class ProbelmDetailView(DetailView):
         id_ = self.kwargs.get("pk")
         return get_object_or_404(Problem, id=id_)
     
+    def get_context_data(self, **kwargs):
+        context = super(ProbelmDetailView, self).get_context_data(**kwargs)
+        problem_id = self.kwargs.get("pk")
+        context["problem"] = get_object_or_404(Problem, id=problem_id)
+        context["comments"] = Comment.objects.filter(problem__id=problem_id)
+        return context
+    
+
 
 class ProblemUpdateView(UpdateView):
     model = Problem

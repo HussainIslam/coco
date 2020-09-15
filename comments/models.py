@@ -11,4 +11,4 @@ class Comment(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'Comment by { self.user.username } on { self.problem.title }'
+        return f'Comment by { self.commenter.username } on { self.problem.title }'
