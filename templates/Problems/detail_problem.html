@@ -17,6 +17,14 @@
     <a href="{% url 'delete_problem' problem.pk %}" class="btn btn-danger btn-sm">Delete Problem</a>
 </p>
 
+<h4>Leave a comment</h4>
+<form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit" name="comment">Comment</button>
+</form>
+
+
 {% for comment in comments %}
     <p>{{ comment.body }} by {{ comment.commenter.username }}</p>
 {% empty %}

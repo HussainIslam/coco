@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 from taggit.models import Tag
 
@@ -24,7 +25,6 @@ class ProblemCreateView(CreateView):
         return super().form_valid(form)
 
 class ProbelmDetailView(DetailView):
-    model = Problem
     template_name = 'Problems/detail_problem.html'
 
     def get_object(self, **kwargs):
@@ -32,11 +32,30 @@ class ProbelmDetailView(DetailView):
         return get_object_or_404(Problem, id=id_)
     
     def get_context_data(self, **kwargs):
-        context = super(ProbelmDetailView, self).get_context_data(**kwargs)
-        problem_id = self.kwargs.get("pk")
-        context["problem"] = get_object_or_404(Problem, id=problem_id)
-        context["comments"] = Comment.objects.filter(problem__id=problem_id)
-        return context
+        problem_object = self.get_object()
+        kwargs['problem'] = problem_object
+        kwargs['comments'] = Comment.objects.filter(problem=problem_object)
+        if 'comment_form' not in kwargs:
+            kwargs['comment_form'] = CommentForm()
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
+    
+    def post(self, request, *args, **kwargs):
+        ctxt = {}
+        if 'body' in request.POST:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                new_comment = Comment()
+                new_comment.problem = self.get_object()
+                new_comment.commenter = self.request.user
+                new_comment.body = comment_form.cleaned_data['body']
+                new_comment.save()
+                return HttpResponseRedirect(reverse_lazy('detail_problem', kwargs={'pk': self.get_object().id}))
+            else:
+                ctxt['comment_form'] = comment_form
+        return render(request, self.template_name, self.get_context_data(**ctxt))
     
 
 
