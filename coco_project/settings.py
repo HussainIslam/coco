@@ -28,6 +28,9 @@ INSTALLED_APPS = [
 
     'django_ace',
     'taggit',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
     
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
@@ -132,4 +135,12 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # Authentication and Authorization
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+
+# Settings for Allauth
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationiBackend',
+]
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

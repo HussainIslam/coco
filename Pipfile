@@ -10,6 +10,7 @@ django = "*"
 pillow = "*"
 django-ace = "*"
 django-taggit = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.6"
