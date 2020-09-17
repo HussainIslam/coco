@@ -2,7 +2,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView,
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 
-from .forms import CustomUserCreationForm, ProgrammingLanguageForm
+from .forms import CustomUserCreationForm, ProgrammingLanguageForm, CustomUserChangeForm
 from .models import ProgrammingLanguage
 
 class SignupView(CreateView):
@@ -16,6 +16,14 @@ class ProfileView(DetailView):
     template_name = 'users/current_profile.html'
 
     def get_object(self):
+        return get_user_model().objects.get(username=self.request.user)
+
+class ProfileUpdateView(UpdateView):
+    form_class = CustomUserChangeForm
+    context_object_name = 'user'
+    template_name = 'users/update_profile.html'
+
+    def get_object(self, queryset=None):
         return get_user_model().objects.get(username=self.request.user)
 
 class ProgrammingLanguageListView(ListView):

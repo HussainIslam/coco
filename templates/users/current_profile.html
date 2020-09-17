@@ -5,6 +5,7 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
+<a href="{% url 'profile_update' %}">Update</a>
 <h1>{{ user.username }}</h1>
 <p>{{ user.email }}</p>
 <p>{{ user.profile }}</p>
