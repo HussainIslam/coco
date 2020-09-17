@@ -12,4 +12,5 @@
 {% if user.avatar %}
     <img src={{ user.avatar.url }} alt="avatar" height="150" width="150">
 {% endif %}
+<a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a>
 {% endblock content %}
