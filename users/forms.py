@@ -9,7 +9,7 @@ class CustomUserCreationForm(UserCreationForm):
     
     class Meta: 
         model = get_user_model()
-        fields = UserCreationForm.Meta.fields + ('avatar', 'profile', 'dob', 'languages',)
+        fields = UserCreationForm.Meta.fields + ('email','avatar', 'profile', 'dob', 'languages',)
 
 class CustomUserChangeForm(UserChangeForm):
 
