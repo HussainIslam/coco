@@ -4,7 +4,14 @@
 
 {% block content %}
 <h1>Problems</h1>
-<p><a href="{% url 'create_problem' %}" class="btn btn-info">Create Problem</a></p>
+
+{% if tag %}
+    <h3>Problems with tag "{{ tag.name }}" are: </h3>
+{% else %}
+    <p><a href="{% url 'create_problem' %}" class="btn btn-info">Create Problem</a></p>
+{% endif %}
+
+
 {% for problem in problems %}
     <div>
         <h4><a href={{ problem.get_absolute_url }}>{{ problem.title }}</a></h4>

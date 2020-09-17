@@ -68,3 +68,18 @@ class ProblemDeleteView(DeleteView):
     model = Problem
     success_url = reverse_lazy('list_problems')
     template_name = 'Problems/delete_problem.html'
+
+class TaggedItemListView(ListView):
+    context_object_name = 'problems'
+    template_name = 'Problems/list_problems.html'
+
+    def get_queryset(self):
+        tag = Tag.objects.get(slug=self.kwargs['slug'])
+        problems = Problem.objects.filter(tags__name=tag)
+        return problems
+
+    def get_context_data(self, **kwargs):
+        context = super(TaggedItemListView, self).get_context_data(**kwargs)
+        context["tag"] = Tag.objects.get(slug=self.kwargs['slug'])
+        return context
+    

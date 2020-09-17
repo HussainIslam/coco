@@ -5,11 +5,9 @@
 {% block content %}
 <h1>{{ problem.title }}</h1>
 <h3>Created by: {{ problem.author.username }} | Language: {{ problem.language }}</h3>
-<ul>
 {% for tag in problem.tags.all %}    
-    <li>{{ tag.name }}</li>
+    <a href="{% url 'same_tag' tag.slug %}">{{ tag.name }}</a>,
 {% endfor %}
-</ul>
 <p>{{ problem.description }}</p>
 <pre>{{ problem.code }}</pre>
 <p>
