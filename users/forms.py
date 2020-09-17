@@ -15,7 +15,8 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'avatar', 'profile', 'dob',)
+        #fields = ('username', 'email', 'avatar', 'profile', 'dob',)
+        fields = '__all__'
 
 class ProgrammingLanguageForm(ModelForm):
     class Meta:
