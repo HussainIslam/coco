@@ -3,6 +3,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from taggit.models import Tag
 
@@ -11,21 +12,24 @@ from .forms import ProblemModelForm
 from comments.models import Comment
 from comments.forms import CommentForm
 
-class ProblemListView(ListView):
+class ProblemListView(LoginRequiredMixin,ListView):
     model = Problem
     context_object_name = 'problems'
+    login_url = 'account_login'
     template_name = 'Problems/list_problems.html'
 
-class ProblemCreateView(CreateView):
+class ProblemCreateView(LoginRequiredMixin,CreateView):
     form_class = ProblemModelForm
+    login_url = 'account_login'
     template_name = 'Problems/create_problem.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class ProbelmDetailView(DetailView):
+class ProbelmDetailView(LoginRequiredMixin,DetailView):
     template_name = 'Problems/detail_problem.html'
+    login_url = 'account_login'
 
     def get_object(self, **kwargs):
         id_ = self.kwargs.get("pk")
@@ -59,18 +63,21 @@ class ProbelmDetailView(DetailView):
     
 
 
-class ProblemUpdateView(UpdateView):
+class ProblemUpdateView(LoginRequiredMixin,UpdateView):
     model = Problem
     form_class = ProblemModelForm
+    login_url = 'account_login'
     template_name = 'Problems/update_problem.html'
 
-class ProblemDeleteView(DeleteView):
+class ProblemDeleteView(LoginRequiredMixin,DeleteView):
     model = Problem
     success_url = reverse_lazy('list_problems')
+    login_url = 'account_login'
     template_name = 'Problems/delete_problem.html'
 
-class TaggedItemListView(ListView):
+class TaggedItemListView(LoginRequiredMixin,ListView):
     context_object_name = 'problems'
+    login_url = 'account_login'
     template_name = 'Problems/list_problems.html'
 
     def get_queryset(self):
