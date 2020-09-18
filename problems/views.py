@@ -3,7 +3,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from taggit.models import Tag
 
@@ -63,17 +63,27 @@ class ProbelmDetailView(LoginRequiredMixin,DetailView):
     
 
 
-class ProblemUpdateView(LoginRequiredMixin,UpdateView):
+class ProblemUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     model = Problem
     form_class = ProblemModelForm
     login_url = 'account_login'
     template_name = 'Problems/update_problem.html'
 
-class ProblemDeleteView(LoginRequiredMixin,DeleteView):
+    def test_func(self):
+        problem = self.get_object()
+        return problem.author == self.request.user
+
+
+class ProblemDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
     model = Problem
     success_url = reverse_lazy('list_problems')
     login_url = 'account_login'
     template_name = 'Problems/delete_problem.html'
+
+
+    def test_func(self):
+        problem = self.get_object()
+        return problem.author == self.request.user
 
 class TaggedItemListView(LoginRequiredMixin,ListView):
     context_object_name = 'problems'
