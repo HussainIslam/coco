@@ -1,6 +1,12 @@
 from django.urls import path
 
-from .views import ProblemListView, ProblemCreateView, ProbelmDetailView, ProblemUpdateView, ProblemDeleteView, TaggedItemListView
+from .views import (ProblemListView, 
+                    ProblemCreateView, 
+                    ProbelmDetailView, 
+                    ProblemUpdateView, 
+                    ProblemDeleteView, 
+                    TaggedItemListView,
+                    ProblemSearchListView,)
 
 urlpatterns = [
     path('', ProblemListView.as_view(), name='list_problems'),
@@ -9,4 +15,5 @@ urlpatterns = [
     path('<int:pk>/update/', ProblemUpdateView.as_view(), name="update_problem"),
     path('<int:pk>/delete/', ProblemDeleteView.as_view(), name="delete_problem"),
     path('tag/<slug:slug>/', TaggedItemListView.as_view(),name="same_tag"),
+    path('search/', ProblemSearchListView.as_view(), name="search_problem"),
 ]

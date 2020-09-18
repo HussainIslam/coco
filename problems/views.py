@@ -99,4 +99,19 @@ class TaggedItemListView(LoginRequiredMixin,ListView):
         context = super(TaggedItemListView, self).get_context_data(**kwargs)
         context["tag"] = Tag.objects.get(slug=self.kwargs['slug'])
         return context
+
+class ProblemSearchListView(LoginRequiredMixin, ListView):
+    context_object_name = 'problems'
+    login_url = 'account_login'
+    template_name = 'Problems/list_problems.html'
+
+    def get_queryset(self):
+        query_string = self.request.GET['query']
+        problems = Problem.objects.filter(title__icontains=query_string)
+        return problems
+
+    def get_context_data(self, **kwargs):
+        context = super(ProblemSearchListView, self).get_context_data(**kwargs)
+        context["query"] = self.request.GET['query']
+        return context
     

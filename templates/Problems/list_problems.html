@@ -5,6 +5,10 @@
 {% block content %}
 <h1>Problems</h1>
 
+{% if query %}
+<h3>Problems with "{{ query }}" in their title are: </h3>
+{% endif %}
+
 {% if tag %}
     <h3>Problems with tag "{{ tag.name }}" are: </h3>
 {% else %}
