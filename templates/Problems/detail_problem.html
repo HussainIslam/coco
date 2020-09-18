@@ -8,7 +8,9 @@
 {% for tag in problem.tags.all %}    
     <a href="{% url 'same_tag' tag.slug %}">{{ tag.name }}</a>,
 {% endfor %}
-<p>{{ problem.description }}</p>
+{% autoescape off %}
+    <p>{{ problem.description }}</p>
+{% endautoescape %}
 <pre>{{ problem.code }}</pre>
 <p>
     <a href="{% url 'update_problem' problem.pk %}" class="btn btn-info btn-sm">Update Problem</a>
