@@ -16,7 +16,6 @@
     <div>
         <h4><a href={{ problem.get_absolute_url }}>{{ problem.title }}</a></h4>
         <p>Created by: {{ problem.author }} | Language: {{ problem.language }} | submitted on: {{ problem.published }}</p>
-        <p>{{ problem.description }}</p>
     </div>
 {% empty %}
     <p>There are no problem yet!!</p>
