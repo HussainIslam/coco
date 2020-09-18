@@ -1,6 +1,7 @@
 from django.views.generic import DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 from problems.models import Problem
 from .models import Comment
@@ -13,3 +14,7 @@ class DeleteCommentView(DeleteView):
         problem_id = self.kwargs['pk']
         cur_problem = Comment.objects.get(id=problem_id).problem
         return reverse_lazy('detail_problem', kwargs={'pk': cur_problem.id})
+
+    def test_func(self):
+        comment = self.get_object()
+        return comment.commenter == self.request.user
