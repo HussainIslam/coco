@@ -5,7 +5,7 @@
 {% block content %}
 {{ form.media }}
 <h1>New Problem</h1>
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-success">Create</button>

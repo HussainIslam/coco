@@ -10,5 +10,6 @@ class ProblemModelForm(forms.ModelForm):
         fields = ['title', 'language', 'status', 'tags','description', 'code',]
         widgets = {
             "code": AceWidget(mode="python", theme="twilight"),
+            'description': forms.Textarea(attrs={'id': 'textarea', 'novalidate': 'true'}),
         }
         
