@@ -18,7 +18,7 @@
 </p>
 
 <h4>Leave a comment</h4>
-<form method="post">
+<form method="post" novalidate>
     {% csrf_token %}
     {{ comment_form.as_p }}
     <button type="submit" name="comment" class="btn btn-info btn-sm">Comment</button>
