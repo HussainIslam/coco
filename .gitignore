@@ -1,5 +1,5 @@
 timelog
-
+.env
 *.log
 *.pot
 *.pyc

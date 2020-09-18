@@ -1,0 +1,1 @@
+web: gunicorn coco_project.wsgi --log-file -

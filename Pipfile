@@ -11,6 +11,9 @@ pillow = "*"
 django-ace = "*"
 django-taggit = "*"
 django-allauth = "*"
+gunicorn = "*"
+whitenoise = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.6"
