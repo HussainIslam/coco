@@ -1,19 +1,25 @@
 import os
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+# Determine environment
+ENVIRONMENT = env('ENVIRONMENT')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '774%3kp67-5zp3pga28dz#yo9^94$u57f%_11ot$jmo*fm%%+g'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,8 +83,12 @@ WSGI_APPLICATION = 'coco_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': 5432
     }
 }
 
@@ -157,6 +167,27 @@ LOGIN_ON_EMAIL_CONFIRMATION=True
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL=LOGIN_REDIRECT_URL
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL=False
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASE['default'].update(db_from_env)
+
+# Settings for Prod
+if ENVIRONMENT == 'production':
+	# guard against XSS attacks
+    SECURE_BROWSER_XSS_FILTER = True
+	
+	# guard against clickjacking using iframe
+    X_FRAME_OPTIONS = 'DENY'
+
+	# redirect HTTP traffic to HTTPS
+    SECURE_SSL_REDIRECT = True
+
+	# HTTP Strict Transport Security (HSTS)
+    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    # transport cookies securely
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    # add secure referrer policy
+    SECURE_REFERRER_POLICY = 'same-origin'
