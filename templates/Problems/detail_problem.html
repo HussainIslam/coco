@@ -1,5 +1,7 @@
 {% extends '../_base.html' %}
 
+{% load markdown_extras %}
+
 {% block title %}Problem - Details{% endblock title %}
 
 {% block content %}
@@ -27,7 +29,7 @@
 <div>
     {% for comment in comments %}
         <div>
-            <p>{% autoescape off %}{{ comment.body }}{% endautoescape %} by {{ comment.commenter.username }}</p>
+            <p>{% autoescape off %}{{ comment.body | markdown | safe }}{% endautoescape %} by {{ comment.commenter.username }}</p>
             <small>{{ comment.created }} <a href="{% url 'delete_comment' comment.pk %}">Remove</a></small>
         </div>
     {% empty %}
