@@ -5,12 +5,15 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-<a href="{% url 'profile_update' %}">Update</a>
 <h1>{{ user.username }}</h1>
-<p>{{ user.email }}</p>
-<p>{{ user.profile }}</p>
 {% if user.avatar %}
     <img src={{ user.avatar.url }} alt="avatar" height="150" width="150">
+{% else %}
+    <img src="{% static 'assets/avatar_placeholder.jpg' %}" alt="avatar" height="150" width="150">
 {% endif %}
-<a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a>
+
+<div>Email: {{ user.email }}</div>
+<div>{{ user.profile }}</div>
+<p><a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a></p>
+<p><a href="{% url 'profile_update' %}">Update</a></p>
 {% endblock content %}
