@@ -14,6 +14,6 @@
 
 <div>Email: {{ user.email }}</div>
 <div>{{ user.profile }}</div>
-<p><a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a></p>
-<p><a href="{% url 'profile_update' %}">Update</a></p>
+<a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a>
+<a href="{% url 'profile_update' %}" class="btn btn-info btn-sm">Update Info</a>
 {% endblock content %}
