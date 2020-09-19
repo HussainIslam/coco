@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'django.contrib.sitemaps',
     
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',

@@ -92,7 +92,7 @@ class TaggedItemListView(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        problems = Problem.objects.filter(tags__name=tag)
+        problems = Problem.objects.filter(tags__name__icontains=tag)
         return problems
 
     def get_context_data(self, **kwargs):
