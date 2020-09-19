@@ -30,7 +30,11 @@
     {% for comment in comments %}
         <div>
             <p>{% autoescape off %}{{ comment.body | markdown | safe }}{% endautoescape %} by {{ comment.commenter.username }}</p>
-            <small>{{ comment.created }} <a href="{% url 'delete_comment' comment.pk %}">Remove</a></small>
+            <small>
+                {{ comment.created }} 
+                ( <a href="{% url 'delete_comment' comment.pk %}">Remove</a> | 
+                <a href="{% url 'update_comment' comment.pk %}">Update</a> )
+            </small>
         </div>
     {% empty %}
         <p>This problem doesn't have any comments</p>

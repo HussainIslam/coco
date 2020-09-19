@@ -1,0 +1,12 @@
+{% extends '../_base.html' %}
+
+{% block title %}Update Comment{% endblock title %}
+
+{% block content %}
+Modify your comment:
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success btn-sm">Update</button>
+</form>
+{% endblock content %}
