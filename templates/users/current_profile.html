@@ -14,6 +14,43 @@
 
 <div>Email: {{ user.email }}</div>
 <div>{{ user.profile }}</div>
-<a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a>
-<a href="{% url 'profile_update' %}" class="btn btn-info btn-sm">Update Info</a>
+<div>
+    <a href="{% url 'account_change_password' %}" class="btn btn-info btn-sm">Change Password</a>
+    <a href="{% url 'profile_update' %}" class="btn btn-info btn-sm">Update Info</a>
+</div>
+<div>
+    <h5>Problems you have created:</h5>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Tags</th>
+                    <th>Language</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Last Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for problem in problems %}
+                    <tr>
+                        <td>{{ problem.title }}</td>
+                        <td>{{ problem.tags }}</td>
+                        <td>{{ problem.language }}</td>
+                        <td>{{ problem.status }}</td>
+                        <td>{{ problem.created }}</td>
+                        <td>{{ problem.modified }}</td>
+                    </tr>
+
+                {% empty %}
+                    <tr>
+                        <td colspan="6">You haven't posted any problem yet. Please create new problems here: <a href="{% url 'create_problem' %}">Create Problem</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
 {% endblock content %}
