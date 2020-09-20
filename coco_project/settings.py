@@ -17,8 +17,8 @@ ENVIRONMENT = env('ENVIRONMENT')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = env('DEBUG')
-DEBUG = False
+DEBUG = env('DEBUG')
+#DEBUG = False
 
 ALLOWED_HOSTS = ['hidden-caverns-46090.herokuapp.com', 'localhost', '127.0.0.1']
 
