@@ -16,10 +16,16 @@
 
 {% block content %}
 <h1>{{ problem.title }}</h1>
-<p>Created by: {{ problem.author.username }} | Language: {{ problem.language }}</p>
+<div>
+    <span class="problem-details-head">Created by: </span>{{ problem.author.username }} | 
+    <span class="problem-details-head">Language: </span>{{ problem.language }} |
+    <span class="problem-details-head">Created on: </span>{{ problem.created }}
+</div>
+<div>Tags: 
 {% for tag in problem.tags.all %}    
-    <a href="{% url 'same_tag' tag.slug %}">{{ tag.name }}</a> | 
+    <a href="{% url 'same_tag' tag.slug %}">{{ tag.name }}</a>&nbsp;
 {% endfor %}
+</div>
 {% autoescape off %}
     <p>{{ problem.description }}</p>
 {% endautoescape %}
