@@ -5,7 +5,7 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-<h1>{{ user.username }}</h1>
+<h1>Welcome, {{ user.username }}</h1>
 {% if user.avatar %}
     <img src={{ user.avatar.url }} alt="avatar" height="150" width="150">
 {% else %}

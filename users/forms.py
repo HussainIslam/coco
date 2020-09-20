@@ -15,8 +15,11 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = get_user_model()
-        #fields = ('username', 'email', 'avatar', 'profile', 'dob',)
-        fields = '__all__'
+        fields = ('username', 'first_name', 'last_name', 'email', 'avatar', 'profile', 'dob', 'password')
+        #fields = '__all__'
+        widgets = {
+            'dob': forms.DateInput()
+        }
 
 class ProgrammingLanguageForm(ModelForm):
     class Meta:
