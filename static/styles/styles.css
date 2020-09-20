@@ -2,3 +2,15 @@
     width: 80vw;
     margin: 0 auto 0 auto;
 }
+
+.problem-details-container{
+    font-size: small;
+}
+
+.program-tags-container{
+    font-size: small;
+}
+
+.problem-details-head{
+    font-weight: bold;
+}
