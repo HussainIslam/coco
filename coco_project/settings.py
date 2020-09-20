@@ -1,8 +1,6 @@
 import os
 import environ
-env = environ.Env(
-    DEBUG = (bool, False)
-)
+env = environ.Env()
 environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -19,7 +17,8 @@ ENVIRONMENT = env('ENVIRONMENT')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+#DEBUG = env('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['hidden-caverns-46090.herokuapp.com', 'localhost', '127.0.0.1']
 
