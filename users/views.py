@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import CustomUserCreationForm, ProgrammingLanguageForm, CustomUserChangeForm
 from .models import ProgrammingLanguage
+from problems.models import Problem
 
 class SignupView(CreateView):
     form_class = CustomUserCreationForm
@@ -19,6 +20,12 @@ class ProfileView(LoginRequiredMixin,DetailView):
 
     def get_object(self):
         return get_user_model().objects.get(username=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["problems"] = Problem.objects.filter(author=self.get_object())
+        return context
+    
 
 class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     form_class = CustomUserChangeForm
