@@ -35,7 +35,7 @@
             <tbody>
                 {% for problem in problems %}
                     <tr>
-                        <td>{{ problem.title }}</td>
+                        <td><a href="{{ problem.get_absolute_url }}">{{ problem.title }}</a></td>
                         <td>{{ problem.tags }}</td>
                         <td>{{ problem.language }}</td>
                         <td>{{ problem.status }}</td>
