@@ -16,6 +16,7 @@ whitenoise = "*"
 django-environ = "*"
 psycopg2-binary = "*"
 markdown = "*"
+martor = "*"
 
 [requires]
 python_version = "3.6"

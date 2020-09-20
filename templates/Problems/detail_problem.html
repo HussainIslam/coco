@@ -1,8 +1,18 @@
 {% extends '../_base.html' %}
 
 {% load markdown_extras %}
+{% load static %}
+{% load martortags %}
 
 {% block title %}Problem - Details{% endblock title %}
+
+{% block css %}
+<link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+{% endblock css %}
+
+
 
 {% block content %}
 <h1>{{ problem.title }}</h1>
@@ -29,7 +39,7 @@
 <div>
     {% for comment in comments %}
         <div>
-            <p>{% autoescape off %}{{ comment.body | markdown | safe }}{% endautoescape %} by {{ comment.commenter.username }}</p>
+            <p>{{ comment.body | safe_markdown }} by {{ comment.commenter.username }}</p>
             <small>
                 {{ comment.created }} 
                 ( <a href="{% url 'delete_comment' comment.pk %}">Remove</a> | 
@@ -42,3 +52,24 @@
     {% endfor %}
 </div>
 {% endblock content %}
+
+
+{% block js %}
+<script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
+<script type="text/javascript" src="{% static 'martor/js/martor.bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/typo.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/spellcheck.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+<script>
+    $('pre').each(function(i, block){
+        hljs.highlightBlock(block);
+    });
+    $('.ui.dropdown').dropdown();
+</script>
+{% endblock js %}

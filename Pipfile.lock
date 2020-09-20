@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0604e781b9896b428d7879ed2f453bd8c3feb8a17c44dfab12acf1923049199e"
+            "sha256": "1f1f3f0762c1259e818341484d4068b637023005888a17fb3f6d3cb1031b22b4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -116,6 +116,13 @@
             ],
             "index": "pypi",
             "version": "==3.2.2"
+        },
+        "martor": {
+            "hashes": [
+                "sha256:a6d05c0a669f9d9865e0804b57fc6c786b7abbf06b2fe34112fb37bc49cf1600"
+            ],
+            "index": "pypi",
+            "version": "==1.5.6"
         },
         "oauthlib": {
             "hashes": [

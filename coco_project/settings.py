@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'martor',
     'django.contrib.sitemaps',
     
     'users.apps.UsersConfig',
@@ -178,6 +179,45 @@ STATICFILES_FINDERS = [
 	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Mortar Settings
+MARTOR_THEME = 'bootstrap'
+
+MARTOR_ENABLE_CONFIGS = {
+    'emoji': 'false',        # to enable/disable emoji icons.
+    'imgur': 'false',        # to enable/disable imgur/custom uploader.
+    'mention': 'false',     # to enable/disable mention
+    'jquery': 'false',       # to include/revoke jquery (require for admin default django)
+    'living': 'false',      # to enable/disable live updates in preview
+    'spellcheck': 'true',  # to enable/disable spellcheck in form textareas
+    'hljs': 'true',         # to enable/disable hljs highlighting in preview
+}
+
+MARTOR_TOOLBAR_BUTTONS = [
+    'bold', 'italic', 'horizontal', 'heading', 'pre-code',
+    'blockquote', 'unordered-list', 'ordered-list',
+    'link', 'image-link', 'image-upload', 'emoji',
+    'direct-mention', 'toggle-maximize', 'help'
+]
+
+MARTOR_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra',
+    'markdown.extensions.nl2br',
+    'markdown.extensions.smarty',
+    'markdown.extensions.fenced_code',
+
+    # Custom markdown extensions.
+    'martor.extensions.urlize',
+    'martor.extensions.del_ins',      # ~~strikethrough~~ and ++underscores++
+    'martor.extensions.mention',      # to parse markdown mention
+    'martor.extensions.emoji',        # to parse markdown emoji
+    'martor.extensions.mdx_video',    # to parse embed/iframe video
+    'martor.extensions.escape_html',  # to handle the XSS vulnerabilities
+]
+
+MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'                  # default from github
+MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/'
+CSRF_COOKIE_HTTPONLY = False
 
 # Settings for Prod
 if ENVIRONMENT == 'production':
