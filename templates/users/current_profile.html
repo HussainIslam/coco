@@ -53,4 +53,40 @@
     </div>
 
 </div>
+<div>
+    <h5>Problems where you have commented:</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Tags</th>
+                    <th>Language</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Last Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td><a href="{{ comment.problem.get_absolute_url }}">{{ comment.problem.title }}</a></td>
+                        <td>{% for tag in comment.problem.tags.all %}{{ tag.name }}, {% endfor %}</td>
+                        <td>{{ comment.problem.language }}</td>
+                        <td>{{ comment.problem.status }}</td>
+                        <td>{{ comment.problem.created }}</td>
+                        <td>{{ comment.problem.modified }}</td>
+                    </tr>
+
+                {% empty %}
+                    <tr>
+                        <td colspan="6">You haven't posted any problem yet. Please create new problems here: <a href="{% url 'create_problem' %}">Create Problem</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 {% endblock content %}
