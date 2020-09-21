@@ -68,14 +68,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for comment in comments %}
+                {% for problem in commented %}
                     <tr>
-                        <td><a href="{{ comment.problem.get_absolute_url }}">{{ comment.problem.title }}</a></td>
-                        <td>{% for tag in comment.problem.tags.all %}{{ tag.name }}, {% endfor %}</td>
-                        <td>{{ comment.problem.language }}</td>
-                        <td>{{ comment.problem.status }}</td>
-                        <td>{{ comment.problem.created }}</td>
-                        <td>{{ comment.problem.modified }}</td>
+                        <td><a href="{{ problem.get_absolute_url }}">{{ problem.title }}</a></td>
+                        <td>{% for tag in problem.tags.all %}{{ tag.name }}, {% endfor %}</td>
+                        <td>{{ problem.language }}</td>
+                        <td>{{ problem.status }}</td>
+                        <td>{{ problem.created }}</td>
+                        <td>{{ problem.modified }}</td>
                     </tr>
 
                 {% empty %}

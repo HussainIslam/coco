@@ -25,7 +25,8 @@ class ProfileView(LoginRequiredMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["problems"] = Problem.objects.filter(author=self.get_object())
-        context["comments"] = Comment.objects.filter(commenter=self.get_object())
+        commented_problems = Comment.objects.filter(commenter=self.get_object()).values_list('problem__id').distinct()
+        context["commented"] = Problem.objects.filter(id__in=commented_problems)
         return context
     
 
