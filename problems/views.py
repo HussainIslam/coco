@@ -19,7 +19,7 @@ class ProblemListView(LoginRequiredMixin,ListView):
     template_name = 'Problems/list_problems.html'
 
     def get_queryset(self):
-        return Problem.objects.filter(status='published')
+        return Problem.objects.filter(status='published').order_by('-published')
     
 
 class ProblemCreateView(LoginRequiredMixin,CreateView):
