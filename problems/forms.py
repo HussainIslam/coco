@@ -7,7 +7,7 @@ from .models import Problem
 class ProblemModelForm(forms.ModelForm):
     class Meta:
         model = Problem
-        fields = ['title', 'language', 'status', 'tags','description', 'code',]
+        fields = ['title', 'language', 'status', 'difficulty', 'tags','description', 'code',]
         widgets = {
             "code": AceWidget(mode="python", theme="twilight"),
             'description': forms.Textarea(attrs={'id': 'textarea', 'novalidate': 'true'}),
