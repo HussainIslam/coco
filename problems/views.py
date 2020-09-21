@@ -18,6 +18,10 @@ class ProblemListView(LoginRequiredMixin,ListView):
     login_url = 'account_login'
     template_name = 'Problems/list_problems.html'
 
+    def get_queryset(self):
+        return Problem.objects.filter(status='published')
+    
+
 class ProblemCreateView(LoginRequiredMixin,CreateView):
     form_class = ProblemModelForm
     login_url = 'account_login'
