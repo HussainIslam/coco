@@ -4,6 +4,7 @@
 
 {% block content %}
 <h1>Blogs</h1>
+<a href="{% url 'create_blog' %}" class="btn btn-info btn-sm">Create Blog</a>
 {% for blog in blogs %}
     <div>
         <h5>{{ blog.title }}</h5>
