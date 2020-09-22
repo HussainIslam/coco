@@ -1,9 +1,22 @@
 {% extends '../_base.html' %}
 
+{% load martortags %}
+
 {% block title %}Blog - {{ blog.title }}{% endblock title %}
 
 {% block content %}
-<h1>{{ blog.title }}</h1>
-<small>Author: {{ blog.author }}, Created on: {{ blog.created }}</small>
-<p>{{ blog.body }}</p>
+<div>
+    <h1>{{ blog.title }}</h1>
+    <div>
+        <small>Author: {{ blog.author }}, Created on: {{ blog.created }}</small>
+    </div>
+    <div>
+        <small>
+            <a href="{% url 'update_blog' blog.pk %}">edit</a> &nbsp;
+            <a href="#">remove</a>
+        </small>
+    </div>
+</div>
+<hr>
+<div>{{ blog.body | safe_markdown }}</div>
 {% endblock content %}
