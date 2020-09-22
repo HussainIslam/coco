@@ -14,3 +14,7 @@ class BlogCreateView(CreateView):
 class BlogDetailView(DetailView):
     model = Blog
     template_name = 'Blog/detail_blog.html'
+
+class BlogListView(ListView):
+    model = Blog
+    template_name = 'Blog/list_blogs.html'
