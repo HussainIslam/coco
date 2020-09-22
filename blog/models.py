@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from taggit.managers import TaggableManager
 
@@ -21,6 +22,6 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-    #     return reverse("", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("detail_blog", kwargs={"pk": self.pk})
     
