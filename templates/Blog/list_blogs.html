@@ -7,7 +7,7 @@
 <a href="{% url 'create_blog' %}" class="btn btn-info btn-sm">Create Blog</a>
 {% for blog in blogs %}
     <div>
-        <h5>{{ blog.title }}</h5>
+        <h5><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h5>
         <small>Created by: {{ blog.author }}, Created on: {{ blog.created }}</small>
         <hr>
     </div>
