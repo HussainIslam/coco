@@ -1,8 +1,13 @@
 {% extends '../_base.html' %}
 
+{% load static %}
 {% load martortags %}
 
 {% block title %}Blog - {{ blog.title }}{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'styles/blog-styles.css' %}">
+{% endblock css %}
 
 {% block content %}
 <div>
@@ -18,5 +23,5 @@
     </div>
 </div>
 <hr>
-<div>{{ blog.body | safe_markdown }}</div>
+<div id="blog-post">{{ blog.body | safe_markdown }}</div>
 {% endblock content %}
