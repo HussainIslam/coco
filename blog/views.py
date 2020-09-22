@@ -5,10 +5,11 @@ from django.views.generic import (  CreateView,
                                     DeleteView)
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from django.contrib.auth import get_user_model
 
 from .models import Blog
 from .forms import BlogModelForm
+
 
 class BlogCreateView(LoginRequiredMixin, CreateView):
     form_class = BlogModelForm
@@ -32,7 +33,15 @@ class BlogUpdateView(UserPassesTestMixin, UpdateView):
     form_class = BlogModelForm
     template_name = 'Blog/update_blog.html'
 
+    def test_func(self):
+        blog = self.get_object()
+        return blog.author == self.request.user
+
 class BlogDeleteView(UserPassesTestMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy('blogs')
     template_name = 'Blog/delete_blog.html'
+
+    def test_func(self):
+        blog = self.get_object()
+        return blog.author == self.request.user
