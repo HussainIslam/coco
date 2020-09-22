@@ -13,7 +13,7 @@
     <div>
         <small>
             <a href="{% url 'update_blog' blog.pk %}">edit</a> &nbsp;
-            <a href="#">remove</a>
+            <a href="{% url 'delete_blog' blog.pk %}">remove</a>
         </small>
     </div>
 </div>
