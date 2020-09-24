@@ -7,10 +7,27 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'styles/blog-styles.css' %}">
+<style>
+{% if blog.cover %}
+#blog-cover-container{
+    background-image: url("{{ blog.cover.url }}");
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+{% endif %}
+</style>
+
 {% endblock css %}
 
 {% block content %}
 <div>
+    {% if blog.cover %}
+        <div id="blog-cover-container" >
+        </div>
+    {% endif %}
     <h1>{{ blog.title }}</h1>
     <div>
         <small>Author: {{ blog.author }}, Created on: {{ blog.created }}</small>
@@ -25,3 +42,7 @@
 <hr>
 <div id="blog-post">{{ blog.body | safe_markdown }}</div>
 {% endblock content %}
+
+{% block js %}
+<script src="{% static 'scripts/blogs.js' %}"></script>
+{% endblock js %}

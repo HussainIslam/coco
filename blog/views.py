@@ -21,7 +21,13 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 
 class BlogDetailView(LoginRequiredMixin, DetailView):
     model = Blog
+    context_object_name = 'blog'
     template_name = 'Blog/detail_blog.html'
+
+    def get_object(self):
+        obj = Blog.objects.get(id=self.kwargs['pk'])
+        print(obj.cover)
+        return obj
 
 class BlogListView(LoginRequiredMixin, ListView):
     model = Blog
