@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import (SignupView,
                     ProfileView,
+                    OtherProfileDetailView,
                     ProfileUpdateView,
                     ProgrammingLanguageCreate, 
                     ProgrammingLanguageDetailView, 
@@ -12,6 +13,7 @@ from .views import (SignupView,
 urlpatterns = [
     path('signup/', SignupView.as_view(), name='signup'),
     path('profile/', ProfileView.as_view(), name='profile'),
+    path('<int:pk>/', OtherProfileDetailView.as_view(), name="user_profile"),
     path('profile/update/', ProfileUpdateView.as_view(), name="profile_update"),
     path('languages/', ProgrammingLanguageListView.as_view(), name='languages'),
     path('languages/add/', ProgrammingLanguageCreate.as_view(), name='create_pl'),
