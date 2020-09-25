@@ -29,6 +29,14 @@ class ProfileView(LoginRequiredMixin,DetailView):
         context["commented"] = Problem.objects.filter(id__in=commented_problems)
         return context
     
+class OtherProfileDetailView(DetailView):
+    model = get_user_model()
+    context_object_name = 'user'
+    template_name = 'users/user_profile.html'
+
+    def get_object(self):
+        return get_user_model().objects.get(id=self.kwargs['pk'])
+
 
 class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     form_class = CustomUserChangeForm
