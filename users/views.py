@@ -40,6 +40,7 @@ class OtherProfileDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["problems"] = Problem.objects.filter(author=self.get_object())
+        
         return context
     
 

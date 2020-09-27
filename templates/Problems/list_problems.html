@@ -1,7 +1,12 @@
 {% extends '../_base.html' %}
+{% load static %}
 {% load problems_custom_tags %}
 
 {% block title %}Problems{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'styles/problems-list.css' %}">
+{% endblock css %}
 
 {% block content %}
 <h1>Problems</h1>
@@ -17,9 +22,11 @@
 {% endif %}
 
 
-{% for problem in problems %}
-    {% problem_info_in_list problem %}
-{% empty %}
-    <p>There are no problem yet!!</p>
-{% endfor %}
+<div class="container-fluid d-sm-flex">
+    {% for problem in problems %}
+        {% problem_info_in_list problem %}
+    {% empty %}
+        <p>There are no problem yet!!</p>
+    {% endfor %}
+</div>
 {% endblock content %}
