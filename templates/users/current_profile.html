@@ -20,9 +20,13 @@
     <a href="{% url 'profile_update' %}" class="btn btn-info btn-sm">Update Info</a>
 </div>
 <div>
-    <h5>Problems you have created:</h5>
-    {% tabularized_problems problems %}
+    <h5>Your draft problems:</h5>
+    {% tabularized_problems draft_problems %}
+</div>
 
+<div>
+    <h5>Problems you have published:</h5>
+    {% tabularized_problems published_problems %}
 </div>
 <div>
     <h5>Problems where you have commented:</h5>
