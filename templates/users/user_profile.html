@@ -1,5 +1,6 @@
 {% extends '../_base.html' %}
 {% load static %}
+{% load users_custom_tags %}
 
 {% block title %}User Profile{% endblock title %}
 
@@ -16,38 +17,6 @@
 
 <div>
     <h5>Problems {{ other_user.username }} have created:</h5>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Tags</th>
-                    <th>Language</th>
-                    <th>Status</th>
-                    <th>Created</th>
-                    <th>Last Modified</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for problem in problems %}
-                    <tr>
-                        <td><a href="{{ problem.get_absolute_url }}">{{ problem.title }}</a></td>
-                        <td>{% for tag in problem.tags.all %}
-                                <a href="{% url 'same_tag' tag.slug %}">{{ tag.name }}</a>
-                            {% endfor %}
-                        </td>
-                        <td>{{ problem.language }}</td>
-                        <td>{{ problem.status }}</td>
-                        <td>{{ problem.created }}</td>
-                        <td>{{ problem.modified }}</td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="6">{{ other_user.username }} haven't posted any problem yet.</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    {% tabularized_problems problems %}
 </div>
 {% endblock content %}
