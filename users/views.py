@@ -31,7 +31,7 @@ class ProfileView(LoginRequiredMixin,DetailView):
     
 class OtherProfileDetailView(DetailView):
     model = get_user_model()
-    context_object_name = 'user'
+    context_object_name = 'other_user'
     template_name = 'users/user_profile.html'
 
     def get_object(self):

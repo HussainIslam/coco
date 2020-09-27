@@ -12,7 +12,7 @@ class Blog(models.Model):
     )
     title = models.CharField(max_length=100)
     body = models.TextField()
-    cover = models.ImageField(null=True)
+    cover = models.ImageField(upload_to='blog_covers/',null=True)
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default="draft")
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
