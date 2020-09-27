@@ -11,6 +11,7 @@ from .models import Problem
 from .forms import ProblemModelForm
 from comments.models import Comment
 from comments.forms import CommentForm
+from django.conf import settings
 
 class ProblemListView(LoginRequiredMixin,ListView):
     model = Problem
@@ -19,6 +20,7 @@ class ProblemListView(LoginRequiredMixin,ListView):
     template_name = 'Problems/list_problems.html'
 
     def get_queryset(self):
+        print(settings.ENVIRONMENT)
         return Problem.objects.filter(status='published').order_by('-published')
     
 

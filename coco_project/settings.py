@@ -1,5 +1,6 @@
 import os
 import environ
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -170,7 +171,7 @@ EMAIL_USET_TLS=True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = 'https://coco-164d8.kxcdn.com/static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
