@@ -1,8 +1,53 @@
 {% extends '../_base.html' %}
+{% load static %}
 
 {% block title %}User Profile{% endblock title %}
 
 {% block content %}
 <h1>{{ other_user.username }}</h1>
-<p>{{ other_user.profile }}</p>
+{% if user.avatar %}
+    <img src={{ user.avatar.url }} alt="avatar" height="150" width="150">
+{% else %}
+    <img src="{% static 'assets/avatar_placeholder.jpg' %}" alt="avatar" height="150" width="150">
+{% endif %}
+
+<div>Email: {{ user.email }}</div>
+<div>{{ user.profile }}</div>
+
+<div>
+    <h5>Problems {{ other_user.username }} have created:</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Tags</th>
+                    <th>Language</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Last Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for problem in problems %}
+                    <tr>
+                        <td><a href="{{ problem.get_absolute_url }}">{{ problem.title }}</a></td>
+                        <td>{% for tag in problem.tags.all %}
+                                <a href="{% url 'same_tag' tag.slug %}">{{ tag.name }}</a>
+                            {% endfor %}
+                        </td>
+                        <td>{{ problem.language }}</td>
+                        <td>{{ problem.status }}</td>
+                        <td>{{ problem.created }}</td>
+                        <td>{{ problem.modified }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">{{ other_user.username }} haven't posted any problem yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}
