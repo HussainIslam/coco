@@ -1,7 +1,7 @@
 <div class="card problem-card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title"><a href="{{ problem.get_absolute_url }}">{{ problem.title }}</a></h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ problem.published }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{ problem.published | timesince }}</h6>
     <p class="card-text">
         Created by: <a href="{% url 'user_profile' problem.author.id %}">{{ problem.author }}</a> <br>
         Language: {{ problem.language }} 
