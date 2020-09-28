@@ -11,7 +11,7 @@ class ProblemModelForm(forms.ModelForm):
             'language': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
             'status': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
             'difficulty': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
-            'tags': forms.TextInput(attrs={'class': 'form-control col-sm-2', "placeholder": 'comma-seperated tags'}),
+            'tags': forms.TextInput(attrs={'class': 'form-control col-sm-5', "placeholder": 'comma-seperated tags'}),
             'description': forms.Textarea(attrs={'id': 'textarea', 'novalidate': 'true'}),
         }
         
