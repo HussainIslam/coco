@@ -19,7 +19,6 @@ class Problem(models.Model):
     )
     title = models.CharField(max_length=250)
     description = models.TextField()
-    code = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     difficulty = models.CharField(max_length=6, choices=DIFFICULTY_CHOICES, default="easy")
     created = models.DateTimeField(auto_now_add=True)
