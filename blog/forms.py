@@ -8,5 +8,5 @@ class BlogModelForm(forms.ModelForm):
     body = MartorFormField()
     class Meta:
         model = Blog
-        fields = ('title','cover', 'status', 'blog_tags', 'body', )
+        fields = ('title','status', 'blog_tags', 'body', )
         #fields = '__all__'
