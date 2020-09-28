@@ -31,11 +31,12 @@
 {% autoescape off %}
     <p>{{ problem.description }}</p>
 {% endautoescape %}
-<pre>{{ problem.code }}</pre>
+{% if problem.author.username == request.user.username %}
 <p>
     <a href="{% url 'update_problem' problem.pk %}" class="btn btn-info btn-sm">Update Problem</a>
     <a href="{% url 'delete_problem' problem.pk %}" class="btn btn-danger btn-sm">Delete Problem</a>
 </p>
+{% endif %}
 
 <h4>Leave a comment</h4>
 <form method="post" novalidate>
