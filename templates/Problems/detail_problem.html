@@ -17,7 +17,8 @@
 {% block content %}
 <h1>{{ problem.title }}</h1>
 <div class="problem-details-container">
-    <span class="problem-details-head">Created by: </span>{{ problem.author.username }} | 
+    <span class="problem-details-head">Created by: </span>
+        <a href="{% url 'user_profile' problem.author.id %}">{{ problem.author.username }}</a> | 
     <span class="problem-details-head">Language: </span>{{ problem.language }} |
     <span class="problem-details-head">Created on: </span>{{ problem.created }}
     <span class="problem-details-head">Difficulty: </span>{{ problem.difficulty | title }}
