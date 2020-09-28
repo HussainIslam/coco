@@ -23,7 +23,13 @@
         {{ form.title.errors }}
     </div>
     <div class="form-group" id="blog-form-controls">
-        {{ form.status }} {{ form.blog_tags }}
+        {{ form.status }}
+        <input 
+                type="text" 
+                name="{{ form.blog_tags.name }}" 
+                class="{{ form.blog_tags.field.widget.attrs.class }}"
+                value="{% for tag in form.blog_tags.value %}{{ tag }}, {% endfor %}"
+        >
     </div>
     <div class="form-group">
         {{ form.body }}
