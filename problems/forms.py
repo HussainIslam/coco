@@ -7,7 +7,7 @@ class ProblemModelForm(forms.ModelForm):
         model = Problem
         fields = ['title', 'language', 'status', 'difficulty', 'tags','description', ]
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Problem Title'}),
             'language': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
             'status': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
             'difficulty': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
