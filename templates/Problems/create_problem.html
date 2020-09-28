@@ -3,7 +3,6 @@
 {% block title %}Create New Problem{% endblock title %}
 
 {% block content %}
-{{ form.media }}
 <h1>New Problem</h1>
 <form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}

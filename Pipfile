@@ -8,7 +8,6 @@ verify_ssl = true
 [packages]
 django = "*"
 pillow = "*"
-django-ace = "*"
 django-taggit = "*"
 django-allauth = "*"
 gunicorn = "*"
