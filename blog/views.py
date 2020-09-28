@@ -28,7 +28,6 @@ class BlogDetailView(LoginRequiredMixin, DetailView):
 
     def get_object(self):
         obj = Blog.objects.get(id=self.kwargs['pk'])
-        print(obj.cover)
         return obj
 
 class BlogListView(LoginRequiredMixin, ListView):
