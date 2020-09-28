@@ -9,4 +9,8 @@ class BlogModelForm(forms.ModelForm):
     class Meta:
         model = Blog
         fields = ('title','status', 'blog_tags', 'body', )
-        #fields = '__all__'
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Blog Title'}),
+            'status': forms.Select(attrs={'class': 'custom-select col-sm-2'}),
+            'blog_tags': forms.TextInput(attrs={ 'class': 'form-control col-sm-9' })
+        }

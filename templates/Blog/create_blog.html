@@ -15,10 +15,20 @@
 
 
 {% block content %}
-<h1>Create New Blog</h1>
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.non_field_errors }}
+
+    <div class="input-group input-group-lg">
+        {{ form.title }}
+        {{ form.title.errors }}
+    </div>
+    <div class="form-group" id="blog-form-controls">
+        {{ form.status }} {{ form.blog_tags }}
+    </div>
+    <div class="form-group">
+        {{ form.body }}
+    </div>
     <button type="submit" class="btn btn-success btn-sm">Create Blog</button>
 </form>
 {% endblock content %}

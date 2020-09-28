@@ -7,6 +7,19 @@
     width: 100%;
 }
 
-#blog-cover{
-    
+#blog-form-controls{
+    display: flex;
+    justify-content: space-between;
+}
+
+#id_title{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(184, 181, 181);
+    border-radius: 0;
+    margin: 20px auto 30px auto;
+    height: 80px;
+    font-size: 3em;
+    text-align: center;
 }
