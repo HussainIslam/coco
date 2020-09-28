@@ -1,14 +1,30 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %}Login{% endblock title %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'styles/login.css' %}">
+{% endblock css %}
+
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-success btn-sm">Log In</button>
-</form>
-<a href="{% url 'account_reset_password' %}">Forgot Password?</a><br>
-<a href="{% url 'account_signup' %}">Don't have an account?</a>
+<div class="login-container">
+  <h2>Log In</h2>
+  <form method="post" class="login-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="login-input-container">
+      {{ form.login.errors }}
+      {{ form.login }}
+    </div>
+    <div class="login-input-container">
+      {{ form.password.errors }}
+      {{ form.password }}
+    </div>
+    <button type="submit" class="btn btn-success btn-sm login-button" >Log In</button>
+  </form>
+  <div class="login-extra-container">
+    <a href="{% url 'account_reset_password' %}">Reset Password </a> or <a href="{% url 'account_signup' %}">Register</a>
+  </div>
+</div>
 {% endblock content %}
