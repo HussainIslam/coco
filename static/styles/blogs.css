@@ -23,3 +23,12 @@
     font-size: 3em;
     text-align: center;
 }
+
+#id_body{
+    height: 100px;
+    width: 100%;
+}
+
+#leave-a-comment{
+    font-size: 1em;
+}

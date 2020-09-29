@@ -6,7 +6,7 @@
 {% block title %}Blog - {{ blog.title }}{% endblock title %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'styles/blog-styles.css' %}">
+<link rel="stylesheet" href="{% static 'styles/blogs.css' %}">
 <style>
 {% if blog.cover %}
 #blog-cover-container{
@@ -44,11 +44,14 @@
 <hr>
 <div id="blog-post">{{ blog.body | safe_markdown }}</div>
 
-<h4>Leave a comment</h4>
+<h4 id="leave-a-comment">Leave a comment</h4>
 <form method="post" novalidate>
     {% csrf_token %}
-    {{ comment_form.as_p }}
-    <button type="submit" name="comment" class="btn btn-info btn-sm">Comment</button>
+    <div>
+        {{ comment_form.body }}
+        {{ comment_form.body.errors }}
+    </div>
+    <button type="submit" name="comment" class="btn btn-info btn-sm">Post Comment</button>
 </form>
 
 <div>
