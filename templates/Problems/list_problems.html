@@ -5,7 +5,7 @@
 {% block title %}Problems{% endblock title %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'styles/problems-list.css' %}">
+<link rel="stylesheet" href="{% static 'styles/problems.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -22,7 +22,7 @@
 {% endif %}
 
 
-<div class="container-fluid d-sm-flex">
+<div class="container-fluid" id="problems-container">
     {% for problem in problems %}
         {% problem_info_in_list problem %}
     {% empty %}
