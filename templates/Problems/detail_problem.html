@@ -3,6 +3,7 @@
 {% load markdown_extras %}
 {% load static %}
 {% load martortags %}
+{% load custom_comment_tags %}
 
 {% block title %}Problem - Details{% endblock title %}
 
@@ -10,6 +11,7 @@
 <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
 <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'styles/problems.css' %}">
 {% endblock css %}
 
 
@@ -48,15 +50,7 @@
 
 <div>
     {% for comment in comments %}
-        <div>
-            <p>{{ comment.body | safe_markdown }} by {{ comment.commenter.username }}</p>
-            <small>
-                {{ comment.created }} 
-                ( <a href="{% url 'delete_comment' comment.pk %}">Remove</a> | 
-                <a href="{% url 'update_comment' comment.pk %}">Update</a> )
-            </small>
-        </div>
-        <hr>
+        {% stylized_problem_comment comment %}
     {% empty %}
         <p>This problem doesn't have any comments</p>
     {% endfor %}
