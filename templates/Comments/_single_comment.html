@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class="comment-container">
+    <div class="comment-image-container">
+        {% if comment.commenter.avatar %}
+            <img src="{{ comment.commenter.avatar }}" alt="avatar" class="commenter_avatar">
+        {% else %}
+            <img src="{% static 'assets/avatar_placeholder.jpg' %}" alt="avatar" class="commenter_avatar">
+        {% endif %}
+    </div>
+    <div class="comment-info-container">
+        <p>{{ comment.body }}</p>
+        <small>by {{ comment.commenter.username }}, {{ comment.created | timesince }} ago</small>
+    </div>
+</div>

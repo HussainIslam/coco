@@ -32,3 +32,15 @@
 #leave-a-comment{
     font-size: 1em;
 }
+
+.commenter_avatar{
+    width: 80px;
+    margin-right: 20px;
+}
+
+.comment-container{
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(213, 209, 209);
+    margin: 10px 0 10px 0;
+}
