@@ -132,7 +132,7 @@ USE_TZ = True
 
 
 # Media Settings
-MEDIA_URL = 'https://coco-164d8.kxcdn.com/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Custom User model

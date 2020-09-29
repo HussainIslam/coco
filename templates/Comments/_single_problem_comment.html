@@ -4,7 +4,7 @@
 <div class="comment-container">
     <div class="comment-image-container">
         {% if comment.commenter.avatar %}
-            <img src="{{ comment.commenter.avatar }}" alt="avatar" class="commenter_avatar">
+            <img src="{{ MEDIA_URL }}{{ comment.commenter.avatar.url }}" alt="avatar" class="commenter_avatar">
         {% else %}
             <img src="{% static 'assets/avatar_placeholder.jpg' %}" alt="avatar" class="commenter_avatar">
         {% endif %}
