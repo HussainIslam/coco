@@ -13,5 +13,13 @@
     </div>
     <div class="comment-info-container">
         <p>{{ comment.body | safe_markdown }}</p>
+        {% if comment.commenter.username == request.user.username %}
+            <div>
+                <small>
+                    <a href="{% url 'update_comment' comment.id %}">Update</a> |
+                    <a href="{% url 'delete_comment' comment.id %}">Delete</a> 
+                </small>
+            </div>
+        {% endif %}
     </div>
 </div>
