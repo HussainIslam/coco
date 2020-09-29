@@ -21,7 +21,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 #DEBUG = False
 
-ALLOWED_HOSTS = ['hidden-caverns-46090.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['hidden-caverns-46090.herokuapp.com',
+                 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'martor',
     'django.contrib.sitemaps',
-    
+
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'problems.apps.ProblemsConfig',
@@ -151,20 +152,20 @@ AUTHENTICATION_BACKENDS = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ACCOUNT_SESSION_REMEMBER = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email' 
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-LOGIN_ON_EMAIL_CONFIRMATION=True
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL=LOGIN_REDIRECT_URL
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL=False
+LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_REDIRECT_URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = False
 
 # Email setup
-DEFAULT_FROM_EMAIL=env('DEFAULT_FROM_EMAIL')
-EMAIL_HOST=env('EMAIL_HOST')
-EMAIL_HOST_USER=env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=env('EMAIL_HOST_PASSWORD')
-EMAIL_PORT=env('EMAIL_PORT')
-EMAIL_USET_TLS=True
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USET_TLS = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -176,8 +177,8 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_FINDERS = [
-	"django.contrib.staticfiles.finders.FileSystemFinder",
-	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -188,7 +189,8 @@ MARTOR_ENABLE_CONFIGS = {
     'emoji': 'false',        # to enable/disable emoji icons.
     'imgur': 'false',        # to enable/disable imgur/custom uploader.
     'mention': 'false',     # to enable/disable mention
-    'jquery': 'false',       # to include/revoke jquery (require for admin default django)
+    # to include/revoke jquery (require for admin default django)
+    'jquery': 'false',
     'living': 'false',      # to enable/disable live updates in preview
     'spellcheck': 'true',  # to enable/disable spellcheck in form textareas
     'hljs': 'true',         # to enable/disable hljs highlighting in preview
@@ -216,22 +218,23 @@ MARTOR_MARKDOWN_EXTENSIONS = [
     'martor.extensions.escape_html',  # to handle the XSS vulnerabilities
 ]
 
-MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'                  # default from github
+# default from github
+MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'
 MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/'
 CSRF_COOKIE_HTTPONLY = False
 
 # Settings for Prod
 if ENVIRONMENT == 'production':
-	# guard against XSS attacks
+    # guard against XSS attacks
     SECURE_BROWSER_XSS_FILTER = True
-	
-	# guard against clickjacking using iframe
+
+    # guard against clickjacking using iframe
     X_FRAME_OPTIONS = 'DENY'
 
-	# redirect HTTP traffic to HTTPS
+    # redirect HTTP traffic to HTTPS
     SECURE_SSL_REDIRECT = True
 
-	# HTTP Strict Transport Security (HSTS)
+    # HTTP Strict Transport Security (HSTS)
     SECURE_HSTS_SECONDS = 3600
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True

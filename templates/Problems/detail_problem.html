@@ -34,6 +34,7 @@
 {% autoescape off %}
     <p>{{ problem.description }}</p>
 {% endautoescape %}
+
 {% if problem.author.username == request.user.username %}
 <p>
     <a href="{% url 'update_problem' problem.pk %}" class="btn btn-info btn-sm">Update Problem</a>
@@ -50,7 +51,7 @@
 
 <div>
     {% for comment in comments %}
-        {% stylized_problem_comment comment %}
+        {% stylized_problem_comment comment request %}
     {% empty %}
         <p>This problem doesn't have any comments</p>
     {% endfor %}
