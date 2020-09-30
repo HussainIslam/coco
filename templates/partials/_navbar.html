@@ -1,5 +1,10 @@
+{% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" href="{% url 'home' %}">CoCo</a>
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'assets/logo_white.png' %}" width="35" height="35" alt="logo" loading="lazy">
+    CoCo
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
