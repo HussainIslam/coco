@@ -1,6 +1,6 @@
 {% extends '../_base.html' %}
 {% load static %}
-
+{% load blogs_custom_tags %}
 
 {% block title %}Blogs{% endblock title %}
 
@@ -19,11 +19,12 @@
     <p  class="latest-blog-body">{{ latest_blog.body | truncatechars:200 }}</p>
 </div>
 
-{% for blog in blogs %}
-    <div>
-        <h5><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h5>
-        <small>Created by: <a href="{% url 'user_profile' blog.author.pk %}">{{ blog.author }}</a>, Created on: {{ blog.created }}</small>
-        <hr>
-    </div>
-{% endfor %}
+<div>
+    {% for blog in blogs %}
+        {% blog_info_in_list blog %}
+    {% empty %}
+        <div>No blogs yet!</div>
+    {% endfor %}
+</div>
+
 {% endblock content %}
