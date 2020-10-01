@@ -14,16 +14,18 @@
 {% endblock css %}
 
 {% block content %}
-<div class="latest-blog-container">
-    <h3 class="latest-blog-title"><a href="{% url 'detail_blog' latest_blog.id %}">{{ latest_blog.title }}</a></h3>
-    <p  class="latest-blog-body">{{ latest_blog.body | truncatechars:200 }}</p>
-</div>
+{% if latest_blog %}
+    <div class="latest-blog-container">
+        <h3 class="latest-blog-title"><a href="{% url 'detail_blog' latest_blog.id %}">{{ latest_blog.title }}</a></h3>
+        <p  class="latest-blog-body">{{ latest_blog.body | truncatechars:200 }}</p>
+    </div>
+{% endif %}
 
 <div class="blog-list-container">
     {% for blog in blogs %}
         {% blog_info_in_list blog %}
     {% empty %}
-        <div>No blogs yet!</div>
+        <div>There are not blogs yet!! Let's create one: <a href="{% url 'create_blog' %}">Create</a></div>
     {% endfor %}
 </div>
 
