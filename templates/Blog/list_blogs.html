@@ -19,7 +19,7 @@
     <p  class="latest-blog-body">{{ latest_blog.body | truncatechars:200 }}</p>
 </div>
 
-<div>
+<div class="blog-list-container">
     {% for blog in blogs %}
         {% blog_info_in_list blog %}
     {% empty %}
