@@ -1,5 +1,10 @@
-<div>
-    <h5><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h5>
-    <small>Created by: <a href="{% url 'user_profile' blog.author.pk %}">{{ blog.author }}</a>, Created on: {{ blog.created }}</small>
-    <hr>
+{% load static %}
+
+<div class="card" style="width: 18rem;">
+  <img src="{% static 'assets/blog-card-image.jpg' %}" class="card-img-top" alt="blog card">
+  <div class="card-body">
+    <h5 class="card-title">{{ blog.title }}</h5>
+    <p class="card-text">{{ blog.body | truncatechars:200 }}</p>
+    <a href="{{ blog.get_absolute_url }}" class="btn btn-primary">Read Blog</a>
+  </div>
 </div>
