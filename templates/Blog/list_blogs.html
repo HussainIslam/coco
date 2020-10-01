@@ -1,10 +1,22 @@
 {% extends '../_base.html' %}
+{% load static %}
+
 
 {% block title %}Blogs{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'styles/blogs.css' %}">
+{% endblock css %}
 
 {% block content %}
 <h1>Blogs</h1>
 <a href="{% url 'create_blog' %}" class="btn btn-info btn-sm">Create Blog</a>
+
+<div class="latest-blog-container">
+    <h3 class="latest-blog-title"><a href="{% url 'detail_blog' latest_blog.id %}">{{ latest_blog.title }}</a></h3>
+    <p  class="latest-blog-body">{{ latest_blog.body | truncatechars:200 }}</p>
+</div>
+
 {% for blog in blogs %}
     <div>
         <h5><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h5>

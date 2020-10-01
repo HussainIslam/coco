@@ -63,6 +63,12 @@ class BlogListView(LoginRequiredMixin, ListView):
     context_object_name = 'blogs'
     template_name = 'Blog/list_blogs.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(BlogListView, self).get_context_data(**kwargs)
+        context["latest_blog"] = Blog.objects.latest('created')
+        return context
+    
+
 class BlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Blog
     form_class = BlogModelForm
