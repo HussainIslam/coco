@@ -65,7 +65,10 @@ class BlogListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogListView, self).get_context_data(**kwargs)
-        context["latest_blog"] = Blog.objects.latest('created')
+        try:
+            context["latest_blog"] = Blog.objects.latest('created')
+        except self.model.DoesNotExist:
+            context["latest_blog"] = None
         return context
     
 
