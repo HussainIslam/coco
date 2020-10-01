@@ -14,9 +14,6 @@
 {% endblock css %}
 
 {% block content %}
-<h1>Blogs</h1>
-<a href="{% url 'create_blog' %}" class="btn btn-info btn-sm">Create Blog</a>
-
 <div class="latest-blog-container">
     <h3 class="latest-blog-title"><a href="{% url 'detail_blog' latest_blog.id %}">{{ latest_blog.title }}</a></h3>
     <p  class="latest-blog-body">{{ latest_blog.body | truncatechars:200 }}</p>
