@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.mail import send_mass_mail
 
 from taggit.models import Tag
 
@@ -61,6 +62,13 @@ class ProbelmDetailView(LoginRequiredMixin,DetailView):
                 new_comment.commenter = self.request.user
                 new_comment.body = comment_form.cleaned_data['body']
                 new_comment.save()
+                subject = 'New comment posted'
+                from_email = 'mhisajib@myseneca.ca'
+                message = "A new comment has been posted in a problem that you have commented or created"
+                all_comments = Comment.objects.filter(problem=new_comment.problem) 
+                to_emails = list(set([ comment.commenter.email for comment in all_comments if comment.commenter.email != new_comment.commenter.email ]))
+                email = (subject, message, from_email, to_emails)
+                send_mass_mail((email,), fail_silently=False)
                 return HttpResponseRedirect(reverse_lazy('detail_problem', kwargs={'pk': self.get_object().id}))
             else:
                 ctxt['comment_form'] = comment_form
