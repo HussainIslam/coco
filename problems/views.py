@@ -62,13 +62,17 @@ class ProbelmDetailView(LoginRequiredMixin,DetailView):
                 new_comment.commenter = self.request.user
                 new_comment.body = comment_form.cleaned_data['body']
                 new_comment.save()
-                subject = 'New comment posted'
+                subject = 'New Comment Posted'
                 from_email = 'mhisajib@myseneca.ca'
                 message = "A new comment has been posted in a problem that you have commented or created"
                 all_comments = Comment.objects.filter(problem=new_comment.problem) 
-                to_emails = list(set([ comment.commenter.email for comment in all_comments if comment.commenter.email != new_comment.commenter.email ]))
+                all_emails = [comment.commenter.email for comment in all_comments]
+                all_emails.append(self.get_object().author.email)
+                unique_emails = set(all_emails)
+                unique_emails.remove(new_comment.commenter.email)
+                to_emails = list(unique_emails)
                 email = (subject, message, from_email, to_emails)
-                send_mass_mail((email,), fail_silently=False)
+                #send_mass_mail((email,), fail_silently=False)
                 return HttpResponseRedirect(reverse_lazy('detail_problem', kwargs={'pk': self.get_object().id}))
             else:
                 ctxt['comment_form'] = comment_form
