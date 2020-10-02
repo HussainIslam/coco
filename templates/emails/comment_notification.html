@@ -1,11 +1,14 @@
 <div>
-Hello User,
+    <h3>Hello {{ receiver }},</h3>
 
-Another use has just posted a comment in this problem. Check out the comment:
+    <div>Another {{ new_comment.commenter }} has just posted a new comment in {{ new_comment.problem.title }}. Check out the comment:</div>
 
+    <div>
+    {{ new_comment.body }}
+    </div>
 
-Alternatively, click here to go to CoCo.
+    <!--<div>Alternatively, <a href="{{ site_name }}/{% url 'detail_problem' new_comment.problem.pk %}">click here</a> to go to CoCo.</div>-->
 
-
-Team CoCo
+    <br>
+    <div>Team CoCo</div>
 </div>
