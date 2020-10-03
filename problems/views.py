@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.mail.message import EmailMultiAlternatives
 from django.template import loader, Context
+from django.contrib.auth import get_user_model
 
 from taggit.models import Tag
 
@@ -64,22 +65,18 @@ class ProbelmDetailView(LoginRequiredMixin,DetailView):
                 new_comment.body = comment_form.cleaned_data['body']
                 new_comment.save()
 
-                subject = 'New Comment Posted'
                 from_email = 'mhisajib@myseneca.ca'
-                #message = "A new comment has been posted in a problem that you have commented or created"
                 text_template = loader.get_template('emails/comment_notification.txt')
                 html_template = loader.get_template('emails/comment_notification.html')
-                all_comments = Comment.objects.filter(problem=new_comment.problem) 
-                all_emails = [comment.commenter.email for comment in all_comments]
-                all_emails.append(self.get_object().author.email)
-                unique_emails = set(all_emails)
-                unique_emails.remove(new_comment.commenter.email)
-                to_emails = list(unique_emails)
-                for receiver in to_emails:
+                to_users = Comment.objects.filter(problem=new_comment.problem).values_list('problem__author', flat=True).distinct()
+                print(to_users)
+                for receiver in to_users:
+                    subject = f'New Comment in { new_comment.problem.title }'
+                    receiver = get_user_model().objects.get(id=receiver)
                     context = { 'new_comment': new_comment, 'receiver': receiver }
                     text_content = text_template.render(context)
                     html_content = html_template.render(context)
-                    email = EmailMultiAlternatives(subject, text_content, from_email, [receiver])
+                    email = EmailMultiAlternatives(subject, text_content, from_email, [receiver.email])
                     email.attach_alternative(html_content, "text/html")
                     email.send()
                 return HttpResponseRedirect(reverse_lazy('detail_problem', kwargs={'pk': self.get_object().id}))

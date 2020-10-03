@@ -1,9 +1,19 @@
+{% load static %}
+
+{% block css %}
+<style>
+.comment-body{
+    border: 1px solid gray;
+}
+</style>
+{% endblock css %}
+
 <div>
     <h3>Hello {{ receiver }},</h3>
 
-    <div>Another {{ new_comment.commenter }} has just posted a new comment in {{ new_comment.problem.title }}. Check out the comment:</div>
+    <div>{{ new_comment.commenter }} has just posted a new comment in {{ new_comment.problem.title }}. Check out the comment:</div>
 
-    <div>
+    <div class="comment-body">
     {{ new_comment.body }}
     </div>
 
