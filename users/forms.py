@@ -32,8 +32,25 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
-    password = forms.CharField(label="Password",strip=False,widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'}),)
+    username = forms.CharField(
+        label="Username", 
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control', 
+                'placeholder': 'Username'
+            }
+        )
+    )
+    password = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                'autocomplete': 'current-password', 
+                'placeholder': 'Password'
+            }
+        ),
+    )
 
 
 class ProgrammingLanguageForm(ModelForm):
