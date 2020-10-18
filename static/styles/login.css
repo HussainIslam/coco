@@ -23,6 +23,8 @@
 
 .login-extra-container * {
     font-size: 0.8em;
+    display: flex;
+    justify-content: center;
 }
 
 .github {
@@ -40,7 +42,8 @@
     display: inline-block;
     font-size: 17px;
     line-height: 20px;
-    text-decoration: none; /* remove underline from anchors */
+    text-decoration: none;
+    text-align: center;
 }
 
 .button:hover {
