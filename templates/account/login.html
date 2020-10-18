@@ -12,6 +12,9 @@
 {% block content %}
 <div class="login-container">
   <h2>Log In</h2>
+  <a href="{% provider_login_url 'github' process="login" %}" class="github button">
+    <i class="fab fa-github"></i>&nbsp;&nbsp; Login with GitHub
+  </a>
   <form method="post" class="login-form">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -27,8 +30,7 @@
       </div>
       {{ form.password }}
     </div>
-    <button type="submit" class="btn btn-success btn-sm login-button" >Log In</button>
-    <a href="{% provider_login_url 'github' process="login" %}" class="btn btn-success btn-sm" >GitHub</a>
+    <button type="submit" class="btn btn-success btn-sm btn-block login-button" >Log In</button>
   </form>
   <div class="login-extra-container">
     <a href="{% url 'account_reset_password' %}">Reset Password </a> or <a href="{% url 'account_signup' %}">Register</a>
