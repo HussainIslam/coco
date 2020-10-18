@@ -1,32 +1,42 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 
 from .models import CustomUser, ProgrammingLanguage
 
+
 class CustomUserCreationForm(UserCreationForm):
-    
-    class Meta: 
+
+    class Meta:
         model = get_user_model()
-        fields = ( 'username', 'first_name', 'last_name', 'email', 'avatar', 'profile', 'dob', 'languages',)
+        fields = ('username', 'first_name', 'last_name', 'email',
+                  'avatar', 'profile', 'dob', 'languages',)
         list_of_years = range(1950, 2020)
         widgets = {
             'dob': forms.SelectDateWidget(years=list_of_years)
         }
+
 
 class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = get_user_model()
         list_of_years = range(1950, 2020)
-        fields = ('username', 'first_name', 'last_name', 'email', 'avatar', 'profile', 'dob', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email',
+                  'avatar', 'profile', 'dob', 'password')
         #fields = '__all__'
         widgets = {
             'dob': forms.SelectDateWidget(years=list_of_years)
         }
 
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
+    password = forms.CharField(label="Password",strip=False,widget=forms.PasswordInput(attrs={'autocomplete': 'current-password'}),)
+
+
 class ProgrammingLanguageForm(ModelForm):
     class Meta:
         model = ProgrammingLanguage
-        fields = ['name','abbreviation']
+        fields = ['name', 'abbreviation']

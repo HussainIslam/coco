@@ -2,8 +2,9 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView,
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 
-from .forms import CustomUserCreationForm, ProgrammingLanguageForm, CustomUserChangeForm
+from .forms import CustomUserCreationForm, ProgrammingLanguageForm, CustomUserChangeForm, UserLoginForm
 from .models import ProgrammingLanguage
 from problems.models import Problem
 from comments.models import Comment
@@ -12,6 +13,12 @@ class SignupView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('account_login')
     template_name = 'signup.html'
+
+class UserLoginView(LoginView):
+    authentication_form = UserLoginForm
+    redirect_field_name = reverse_lazy('home')
+    template_name = 'account/login.html'
+    redirect_authenticated_user = True
 
 class ProfileView(LoginRequiredMixin,DetailView):
     model = get_user_model()
