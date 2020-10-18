@@ -1,12 +1,19 @@
+#login-heading{
+    font-size: 1.6em;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
 .login-container {
-    width: 400px;
-    height: 450px;
+    width: 370px;
+    /* height: 450px; */
     margin: 10% auto 0 auto;
+    padding: 3% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    box-shadow: 0 0 10px 10px #888888;
+    box-shadow: 0 0 7px 2px #888888;
 }
 
 .login-form {
@@ -14,11 +21,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: 60%;
     width: 80%;
-}
-
-.login-button {
+    margin-bottom: 25px;
 }
 
 .login-extra-container * {
@@ -29,6 +34,13 @@
 
 .github {
     background-color: black;
+    color: white;
+    margin-bottom: 50px !important;
+}
+
+.login{
+    background-color: #28a745;
+    width: 100% !important;
     color: white;
 }
 
