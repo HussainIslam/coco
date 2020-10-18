@@ -1,4 +1,4 @@
-.login-container{
+.login-container {
     width: 400px;
     height: 450px;
     margin: 10% auto 0 auto;
@@ -9,7 +9,7 @@
     box-shadow: 0 0 10px 10px #888888;
 }
 
-.login-form{
+.login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,11 +18,11 @@
     width: 80%;
 }
 
-.login-button{
+.login-button {
 }
 
-.login-extra-container *{
-    font-size: .8em;
+.login-extra-container * {
+    font-size: 0.8em;
 }
 
 .github {
@@ -43,10 +43,8 @@
     text-decoration: none; /* remove underline from anchors */
 }
 
-a:hover{
-    text-decoration: none;
-}
-
-.button:hover{
+.button:hover {
     opacity: 1;
+    text-decoration: none;
+    color: white;
 }
