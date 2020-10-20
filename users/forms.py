@@ -15,7 +15,8 @@ class CustomUserCreationForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password', 
-                'class': 'form-control'
+                'class': 'form-control',
+                'placeholder': 'Enter Your Password',
             }
         ),
     )
@@ -25,23 +26,24 @@ class CustomUserCreationForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'autocomplete': 'new-password',
-                'class': 'form-control'
+                'class': 'form-control',
+                'placeholder': 'Repeat Your Password',
             }
         ),
     )
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'first_name', 'last_name', 'email',
+        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email',
                   'avatar', 'profile', 'dob', 'languages',]
         current_year = datetime.now().year
         list_of_years = range(current_year - 99, current_year + 1)[::-1]
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
-            'profile': forms.Textarea(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Enter your Username"}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Your First Name"}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Your Last Name"}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Email Address"}),
+            'profile': forms.Textarea(attrs={'class': 'form-control', 'placeholder': "Tell Everyone about Yourself"}),
             'dob': forms.SelectDateWidget(years=list_of_years),
         }
 
