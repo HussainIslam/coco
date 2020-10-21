@@ -16,6 +16,11 @@ django-environ = "*"
 psycopg2-binary = "*"
 markdown = "*"
 martor = "*"
+requests = "*"
+bs4 = "*"
+lxml = "*"
+celer = "*"
+celery = "*"
 
 [requires]
 python_version = "3.6"

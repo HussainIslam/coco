@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'problems.apps.ProblemsConfig',
     'comments.apps.CommentsConfig',
     'blog.apps.BlogConfig',
+    'news.apps.NewsConfig',
 ]
 
 MIDDLEWARE = [
