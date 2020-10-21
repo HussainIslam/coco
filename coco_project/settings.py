@@ -224,6 +224,14 @@ MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/e
 MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/'
 CSRF_COOKIE_HTTPONLY = False
 
+# Celery
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
 # Settings for Prod
 if ENVIRONMENT == 'production':
     # guard against XSS attacks
@@ -247,3 +255,5 @@ if ENVIRONMENT == 'production':
 
     # add secure referrer policy
     SECURE_REFERRER_POLICY = 'same-origin'
+
+

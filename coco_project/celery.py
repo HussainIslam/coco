@@ -1,0 +1,13 @@
+from __future__ import absolute_import
+import os
+from celery import Celery
+
+from celery.schedules import crontab
+
+# default Django settings
+os.environ('DJANGO_SETTINGS_MODULE', 'coco_project.settings')
+app = Celery('coco_project')
+app.conf.timezone = 'UTC'
+app.config_from_object('django.conf:settings', namespace="CELERY")
+
+app.autodiscover_tasks()
