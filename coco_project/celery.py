@@ -5,7 +5,7 @@ from celery import Celery
 from celery.schedules import crontab
 
 # default Django settings
-os.environ('DJANGO_SETTINGS_MODULE', 'coco_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'coco_project.settings')
 app = Celery('coco_project')
 app.conf.timezone = 'UTC'
 app.config_from_object('django.conf:settings', namespace="CELERY")

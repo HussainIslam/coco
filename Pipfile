@@ -21,6 +21,7 @@ bs4 = "*"
 lxml = "*"
 celer = "*"
 celery = "*"
+redis = "*"
 
 [requires]
 python_version = "3.6"
