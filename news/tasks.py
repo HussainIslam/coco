@@ -4,6 +4,10 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 import lxml
+# logging
+from celery.utils.log import get_task_logger
+
+logger = get_task_logger(__name__)
 
 from .models import News
 
@@ -113,17 +117,12 @@ def hackernews_rss():
             published_wrong = a.find('pubDate').text
             published = datetime.strptime(published_wrong, '%a, %d %b %Y %H:%M:%S %z')
             # print(published, published_wrong) # checking correct date format
-
-            # create an "article" object with the data
-            # from each "item"
             article = {
                 'title': title,
                 'link': link,
                 'published': published,
                 'source': 'HackerNews RSS'
             }
-
-            # append my "article_list" with each "article" object
             article_list.append(article)
         
         print('Finished scraping the articles')
