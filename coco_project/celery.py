@@ -11,3 +11,10 @@ app.conf.timezone = 'UTC'
 app.config_from_object('django.conf:settings', namespace="CELERY")
 
 app.autodiscover_tasks()
+app.conf.beat_schedule = {
+    # executes every 1 minute
+    'scraping-task-one-min': {
+        'task': 'news.tasks.hackernews_rss',
+        'schedule': crontab(),
+    },
+}
