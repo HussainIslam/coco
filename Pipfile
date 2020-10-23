@@ -19,7 +19,6 @@ martor = "*"
 requests = "*"
 bs4 = "*"
 lxml = "*"
-celer = "*"
 celery = "*"
 redis = "*"
 

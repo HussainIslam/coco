@@ -1,5 +1,7 @@
 timelog
 .env
+.env.dev
+docker-compose.yml
 *.log
 *.pot
 *.pyc
