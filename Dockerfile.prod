@@ -1,0 +1,68 @@
+###########
+# BUILDER #
+###########
+
+# pull official base image
+FROM python:3.6 as builder
+
+# set work directory
+WORKDIR /code
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# lint
+RUN pip install --upgrade pip
+RUN pip install pipenv
+#RUN pip install flake8
+COPY . ./
+#RUN flake8 --ignore=E501,F401 .
+
+# install dependencies
+COPY Pipfile Pipfile.lock ./
+RUN pipenv lock -r > reqs.txt
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /code/wheels -r reqs.txt
+
+
+#########
+# FINAL #
+#########
+
+# pull official base image
+FROM python:3.6
+
+# create directory for the app user
+RUN mkdir -p /home/coco_user
+
+# create the app user
+RUN addgroup --system coco_group && adduser -system coco_user --ingroup coco_group
+
+# create the appropriate directories
+ENV HOME=/home/coco_user
+ENV APP_HOME=/code
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+# install dependencies
+RUN apt update -y 
+#RUN apt install libpq -y
+COPY --from=builder /code/wheels /wheels
+COPY --from=builder /code/Pipfile .
+COPY --from=builder /code/Pipfile.lock .
+RUN pip install --no-cache /wheels/*
+
+# copy entrypoint-prod.sh
+COPY ./entrypoint.prod.sh $APP_HOME
+
+# copy project
+COPY . $APP_HOME
+
+# chown all the files to the app user
+RUN chown -R coco_user:coco_group $APP_HOME
+
+# change to the app user
+USER coco_user
+
+# run entrypoint.prod.sh
+ENTRYPOINT ["/code/entrypoint.prod.sh"]
