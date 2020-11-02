@@ -8,6 +8,7 @@ WORKDIR /code
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+RUN apt-get update && apt-get install -f -y postgresql-client
 COPY Pipfile Pipfile.lock ./
 RUN pip install --upgrade pip
 RUN pip install pipenv
