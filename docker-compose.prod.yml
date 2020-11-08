@@ -21,6 +21,30 @@ services:
             - postgres_data:/var/lib/postgresql/data
         env_file:
             - ./.env.prod.db
+    redis:
+        image: redis:alpine
+    celery:
+        build: .
+        command: celery -A coco_project worker -l info
+        volumes: 
+            - .:/code
+        links:
+            - db
+            - redis
+        depends_on: 
+            - db
+            - redis
+    celery-beat:
+        build: .
+        command: celery -A coco_project beat -l info
+        volumes:
+            - .:/code
+        links:
+            - db
+            - redis
+        depends_on:
+            - db
+            - redis
     nginx:
         build: ./nginx
         volumes:
