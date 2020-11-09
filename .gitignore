@@ -1,8 +1,9 @@
 timelog
 .env
-.env.dev
+dev.env
 .env.prod
 .env.prod.db
+db.dev.env
 docker-compose.yml
 *.log
 *.pot
