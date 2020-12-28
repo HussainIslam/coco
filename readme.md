@@ -9,6 +9,8 @@ Following these steps to run the application:
 1. clone this repository: `git clone `
 2. create .env files from the sample
 3. build docker image and run container: `docker-compose up -d --build`
+4. If it is the first time running, run the migrations: `docker-compose exec web python manage.py migrate`
+5. create a superuser: `docker-compose exec web python manage.py createsuperuser --username <username> --email <email_address>`
 
 ## Check whether running
 There are multiple ways to check whether the application is running. The most evident way of checking is actually going to the address of the application. Currently, the application is running on the following address:
